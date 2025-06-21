@@ -1,6 +1,6 @@
 // ** MUI Theme Provider
-import { deepmerge } from '@mui/utils'
 import { PaletteMode, ThemeOptions } from '@mui/material'
+import { deepmerge } from '@mui/utils'
 
 // ** User Theme Options
 import UserThemeOptions from 'src/layouts/UserThemeOptions'
@@ -8,13 +8,13 @@ import UserThemeOptions from 'src/layouts/UserThemeOptions'
 // ** Type Import
 
 // ** Theme Override Imports
-import spacing from './spacing'
+import { Settings } from 'src/contexts/SettingsContext'
+import breakpoints from './breakpoints'
+import overrides from './overrides'
 import palette from './palette'
 import shadows from './shadows'
-import overrides from './overrides'
+import spacing from './spacing'
 import typography from './typography'
-import breakpoints from './breakpoints'
-import { Settings } from 'src/contexts/SettingsContext'
 
 const themeOptions = (settings: Settings, overrideMode: PaletteMode): ThemeOptions => {
   // ** Vars
