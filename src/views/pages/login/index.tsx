@@ -212,19 +212,38 @@ const LoginPage: NextPage<TProps> = () => {
                 }
                 label='Remember me'
               />
-              <Link href='#'>Forgot password?</Link>
+              <Link
+                style={{
+                  color: theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white
+                }}
+                href='#'
+              >
+                Forgot password?
+              </Link>
             </Box>
 
             <Button type='submit' fullWidth variant='contained' color='primary' sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
+            
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4px' }}>
               <Typography>{"Don't have an account?"}</Typography>
-              <Link href='/register'>{'Register'}</Link>
+              <Link
+                style={{
+                  color: theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white
+                }}
+                href='/register'
+              >
+                {'Register'}
+              </Link>
             </Box>
             <Typography sx={{ textAlign: 'center', mt: 2, mb: 1 }}>Or</Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-              <IconButton sx={{ color: '#db4437' }}>
+              <IconButton
+                sx={{
+                  color: theme.palette.error.main
+                }}
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   role='img'
@@ -240,7 +259,7 @@ const LoginPage: NextPage<TProps> = () => {
                   ></path>
                 </svg>
               </IconButton>
-              <IconButton sx={{ color: '#3b5998' }}>
+              <IconButton sx={{ color: '#1976d2' }}>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   role='img'
