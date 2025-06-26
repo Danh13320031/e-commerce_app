@@ -37,6 +37,9 @@ import { PASSWORD_REG } from 'src/configs/regex'
 import LoginDark from '/public/images/login-dark.png'
 import LoginLight from '/public/images/login-light.png'
 
+// ** Hooks
+import { useAuth } from 'src/hooks/useAuth'
+
 type TProps = {}
 
 type TDefaultValues = {
@@ -49,10 +52,13 @@ const LoginPage: NextPage<TProps> = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [isRememberMe, setIsRememberMe] = useState<boolean>(true)
 
+  // Context
+  const { login } = useAuth()
+
   // Theme
   const theme = useTheme()
 
-  // Valaidation schema using Yup
+  // Valaidation
   const schema = yup
     .object()
     .shape({
@@ -72,7 +78,7 @@ const LoginPage: NextPage<TProps> = () => {
     password: ''
   }
 
-  // React Hook Form setup
+  // Forms
   const {
     handleSubmit,
     control,
@@ -83,11 +89,11 @@ const LoginPage: NextPage<TProps> = () => {
     resolver: yupResolver(schema)
   })
 
-  console.log('errors', errors)
-
-  // Submit handler
   const onSubmit = (data: { email: string; password: string }) => {
-    console.log('data', { data })
+    if (!Object.keys(errors).length) {
+      login({ ...data, rememberMe: isRememberMe })
+    }
+    console.log('data', { data, errors })
   }
 
   return (
@@ -225,7 +231,7 @@ const LoginPage: NextPage<TProps> = () => {
             <Button type='submit' fullWidth variant='contained' color='primary' sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
-            
+
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4px' }}>
               <Typography>{"Don't have an account?"}</Typography>
               <Link
